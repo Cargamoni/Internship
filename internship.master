@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="internship.master.cs" Inherits="internship" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div>
+        <div class="container">
+            <div class="card card-container">
+                <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                <img id="profile-img" class="profile-img-card" src="images/ktulogo.png" />
+                <p id="profile-name" class="profile-name-card"></p>
+                <form class="form-signin" runat="server">
+                    <span id="reauth-email" class="reauth-email"></span>
+                    <%--<input type="email" id="uyeno" class="form-control" placeholder="Üye Numarası" runat="server" required autofocus>--%>
+                    <asp:TextBox ID="uyeno" runat="server" CssClass="form-control"></asp:TextBox>
+                    <%--<input type="password" id="uyeparola" class="form-control" placeholder="Parola" runat="server" required>--%>
+                    <asp:TextBox ID="uyeparola" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                    <%--                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>--%>
+                    <%--<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Giriş Yap</button>--%>
+                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Giriş Yap" type="submit" value="Kayıt Ol" class="btn btn-lg btn-primary btn-block btn-signin" />
+                </form>
+                <!-- /form -->
+                <%--            <a href="#" class="forgot-password">
+                Forgot the password?
+            </a>--%>
+            </div>
+            <!-- /card-container -->
+        </div>
+        <!-- /container -->
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <asp:SqlDataSource ID="sqlDataSource1" runat="server" DataSourceMode="DataSet" ConnectionString="<%$ ConnectionStrings:InternshipConnection%>"
+                SelectCommand="SELECT * FROM [kurul] WHERE (([uno] = uyeno) AND ([parola] = uyeparola))">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="uyeno" Name="uyeno" PropertyName="Text" Type="String" />
+                    <asp:ControlParameter ControlID="uyeparola" Name="uyeparola" PropertyName="Text" Type="String" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+        </asp:ContentPlaceHolder>
+    </div>
+</body>
+</html>
