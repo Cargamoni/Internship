@@ -14,6 +14,10 @@
                 <p id="profile-name" class="profile-name-card"></p>
                 <form class="form-signin" runat="server">
                     <span id="reauth-email" class="reauth-email"></span>
+<%--                 ASP TextBox Placeholder Ekleme meta:resourcekey="uyenoHint" daha kolayı backend De
+                    <data name="uyenoHint.placeholder">
+                        <value>Üye Numarası</value>
+                    </data>--%>
                     <asp:TextBox ID="uyeno" runat="server" CssClass="form-control"></asp:TextBox>
                     <asp:TextBox ID="uyeparola" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
                     <%--<div id="remember" class="checkbox">
