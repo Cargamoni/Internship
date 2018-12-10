@@ -88,7 +88,7 @@
                                     <%--<textarea class="form-control counted" name="message" placeholder="Sorunuzu yazın." rows="5" style="margin-bottom: 10px; resize: none;" runat="server"></textarea>--%>
                                     <asp:TextBox ID="question" TextMode="MultiLine" runat="server" CssClass="form-control counted questionMultilineGrow" Rows="5"></asp:TextBox>
                                     <h6 class="pull-right" id="counter">1000 karakter kaldı.</h6>
-                                    <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="true" CssClass="checkbox"></asp:CheckBox>
+                                    <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="False" CssClass="checkbox"></asp:CheckBox>
                                     <asp:DropDownList ID="DropDownList1" runat="server" CssClass="btn-block dropdown"></asp:DropDownList>
 
                                     <asp:Label ID="yeniKonuLabel" runat="server"></asp:Label>
