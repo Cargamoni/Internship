@@ -8,6 +8,28 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
+    <script>
+        function checkBoxes(checkedOne, checkBox) {
+            checkedOne.forEach(function (element) {
+                var arrayElement = document.getElementById(element);
+                //dvPassport.style.display = checkBox.checked ? "block" : "none";
+                if(checkBox.checked)
+                {
+                    if ( element == "DropDownList1")
+                        arrayElement.style.display = "none";
+                    else
+                        arrayElement.style.display = "block";
+                }
+                else
+                {
+                    if (element == "DropDownList1")
+                        arrayElement.style.display = "block";
+                    else
+                        arrayElement.style.display = "none";
+                }
+            });
+        }
+</script>   
 <body>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         <%-- Buraya İçerik gelecek --%>
@@ -83,18 +105,16 @@
                                     </form>--%>
 
                                     <form runat="server">
-                                    <asp:TextBox ID="questionHeader" runat="server" CssClass="form-control input-lg"></asp:TextBox>
-                                    <h2>Sorunuz</h2>
-                                    <%--<textarea class="form-control counted" name="message" placeholder="Sorunuzu yazın." rows="5" style="margin-bottom: 10px; resize: none;" runat="server"></textarea>--%>
-                                    <asp:TextBox ID="question" TextMode="MultiLine" runat="server" CssClass="form-control counted questionMultilineGrow" Rows="5"></asp:TextBox>
-                                    <h6 class="pull-right" id="counter">1000 karakter kaldı.</h6>
-                                    <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="False" CssClass="checkbox"></asp:CheckBox>
-                                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="btn-block dropdown"></asp:DropDownList>
+                                    <asp:TextBox ID="ogrenciNo" runat="server" CssClass="form-control input-lg"></asp:TextBox>
 
-                                    <asp:Label ID="yeniKonuLabel" runat="server"></asp:Label>
+                                    <%-- Konu --%>
+                                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control btn-block dropdown"></asp:DropDownList>
+                                    <asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="False" CssClass="checkbox" 
+                                        onclick="var args = ['yeniKonu', 'sayici', 'DropDownList1']; checkBoxes(args,this);"></asp:CheckBox>
                                     <asp:TextBox ID="yeniKonu" runat="server" CssClass="form-control input-lg countedfor50"></asp:TextBox>
                                     <asp:Label ID="sayici" runat="server"></asp:Label>
 
+           
                                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Soruyu Gönder" type="submit" value="Soruyu Gönder" class="btn btn-lg btn-info btn-block" />
                                     </form>
                                 </div>
