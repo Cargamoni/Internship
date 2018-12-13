@@ -8,28 +8,28 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-    <script>
-        function checkBoxes(checkedOne, checkBox) {
-            checkedOne.forEach(function (element) {
-                var arrayElement = document.getElementById(element);
-                //dvPassport.style.display = checkBox.checked ? "block" : "none";
-                if(checkBox.checked)
-                {
-                    if ( element == "DropDownList1")
-                        arrayElement.style.display = "none";
-                    else
-                        arrayElement.style.display = "block";
-                }
+<script>
+    function checkBoxes(checkedOne, checkBox) {
+        checkedOne.forEach(function (element) {
+            var arrayElement = document.getElementById(element);
+            //dvPassport.style.display = checkBox.checked ? "block" : "none";
+            if (checkBox.checked) {
+                if (element == "DropDownList1")
+                    arrayElement.style.display = "none";
                 else
-                {
-                    if (element == "DropDownList1")
-                        arrayElement.style.display = "block";
-                    else
-                        arrayElement.style.display = "none";
-                }
-            });
-        }
-</script>   
+                    arrayElement.style.display = "block";
+
+
+            }
+            else {
+                if (element == "DropDownList1")
+                    arrayElement.style.display = "block";
+                else
+                    arrayElement.style.display = "none";
+            }
+        });
+    }
+</script>
 <body>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         <%-- Buraya İçerik gelecek --%>
@@ -105,17 +105,52 @@
                                     </form>--%>
 
                                     <form runat="server">
-                                    <asp:TextBox ID="ogrenciNo" runat="server" CssClass="form-control input-lg"></asp:TextBox>
+                                        <div class="form-group col-lg-12 control-label">
+                                            <asp:TextBox ID="ogrenciNo" runat="server" CssClass="form-control input-lg"></asp:TextBox>
+                                        </div>
 
-                                    <%-- Konu --%>
-                                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control btn-block dropdown"></asp:DropDownList>
-                                    <asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="False" CssClass="checkbox" 
-                                        onclick="var args = ['yeniKonu', 'sayici', 'DropDownList1']; checkBoxes(args,this);"></asp:CheckBox>
-                                    <asp:TextBox ID="yeniKonu" runat="server" CssClass="form-control input-lg countedfor50"></asp:TextBox>
-                                    <asp:Label ID="sayici" runat="server"></asp:Label>
+                                        <%-- Konu --%>
+                                        <div class="form-group col-lg-12 control-label">
+                                            <asp:Label ID="konuLabel" runat="server" Text="Bir Konu Seçiniz veya Ekleyiniz"></asp:Label>
+                                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control btn-block dropdown"></asp:DropDownList>
+                                            <asp:TextBox ID="yeniKonu" runat="server" CssClass="form-control input-lg countedfor50"></asp:TextBox>
+                                            <asp:Label ID="sayici" runat="server"></asp:Label>
+                                            <asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="False" CssClass="checkbox col-lg-10"
+                                                onclick="var args = ['yeniKonu', 'sayici', 'DropDownList1']; checkBoxes(args,this);"></asp:CheckBox>
 
-           
-                                    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Soruyu Gönder" type="submit" value="Soruyu Gönder" class="btn btn-lg btn-info btn-block" />
+                                        </div>
+
+                                        <%-- İşyeri  --%>
+                                        <div class="form-group col-lg-12 control-label">
+                                            <asp:Label ID="isyeriLabel" runat="server" Text="Bir İşyeri Seçiniz veya Ekleyiniz"></asp:Label>
+                                            <asp:DropDownList ID="DropDownList2" runat="server" CssClass="form-control btn-block dropdown"></asp:DropDownList>
+                                            <asp:TextBox ID="yeniIsyeri" runat="server" CssClass="form-control input-lg countedfor50"></asp:TextBox>
+                                            <asp:Label ID="sayici2" runat="server"></asp:Label>
+                                            <asp:TextBox ID="yeniIsyeriAdres" runat="server" CssClass="form-control input-lg countedfor50"></asp:TextBox>
+                                            <asp:TextBox ID="yeniIsyeriKonum" runat="server" CssClass="form-control input-lg countedfor50"></asp:TextBox>
+                                            <asp:CheckBox ID="CheckBox2" runat="server" AutoPostBack="False" CssClass="checkbox col-lg-10"
+                                                onclick="var args = ['yeniIsyeri', 'sayici2', 'DropDownList2']; checkBoxes(args,this);"></asp:CheckBox>
+                                        </div>
+
+                                        <%-- Başlangıç ve Bitiş --%>
+                                        <div class="form-group col-lg-12 control-label">
+                                        </div>
+
+                                        <%-- Kabul Edilen --%>
+                                        <div class="form-group col-lg-12 control-label">
+                                        </div>
+
+                                        <%-- Değerlendirme --%>
+                                        <div class="form-group col-lg-12 control-label">
+                                        </div>
+
+                                        <%-- Sınıf --%>
+                                        <div class="form-group col-lg-12 control-label">
+                                        </div>
+
+                                        <%-- Departman --%>
+
+                                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Soruyu Gönder" type="submit" value="Soruyu Gönder" class="btn btn-lg btn-info btn-block" />
                                     </form>
                                 </div>
                             </div>

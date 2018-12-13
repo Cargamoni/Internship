@@ -21,7 +21,8 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
         kuruluyeadisoyadi.Text = al.Tables[0].Rows[0][2].ToString();
         kurulyetkisi.Text = al.Tables[0].Rows[0][0].ToString() + " " + al.Tables[0].Rows[0][1].ToString();
 
-        sorgu = "select ino, sirket_adi from dbo.sirket";
+        //Konuların Dropbox'a eklenmesi
+        sorgu = "select kno, konu_adi from dbo.konu";
         al = degisken.genelvericekme(sorgu);
         if (DropDownList1.Items.Count == 0)
         {
@@ -35,9 +36,15 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
             CheckBox1.Text = "Yeni Konu Ekle";
 
         }
+        DropDownList1.Attributes.Add("style", "padding-top: 5px;");
+        CheckBox1.Attributes.Add("class", "mail-checkbox");
         ogrenciNo.Attributes.Add("placeholder", "Öğrenci Numarası");
         yeniKonu.Attributes.Add("placeholder", "Yeni Konu Giriniz");
+        yeniIsyeri.Attributes.Add("placeholder", "Yeni İşyeri Giriniz");
+        yeniIsyeriAdres.Attributes.Add("placeholder", "İşyerinin Adresi");
+        yeniIsyeriKonum.Attributes.Add("placeholder", "İşyerinin Konumu");
 
+        //Konu Visible
         if (DropDownList1.Items.Count == 0)
         {
             yeniKonu.Attributes.Add("style", "display: block;");
@@ -50,6 +57,23 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
             yeniKonu.Attributes.Add("style", "display: none;");
             sayici.Attributes.Add("style", "display: none;");
             DropDownList1.Attributes.Add("style", "display: block;");
+            CheckBox1.Visible = true;
+        }
+
+        //İşyeri Visible
+        if (DropDownList2.Items.Count == 0)
+        {
+            yeniIsyeri.Attributes.Add("style", "display: block;");
+            sayici2.Attributes.Add("style", "display: block;");
+            DropDownList2.Attributes.Add("style", "display: none;");
+            CheckBox2.Visible = false;
+        }
+        else
+        {
+            yeniIsyeri.Attributes.Add("style", "display: none;");
+            sayici2.Attributes.Add("style", "display: none;");
+            DropDownList2.Attributes.Add("style", "display: block;");
+            CheckBox2.Visible = true;
         }
 
 
@@ -66,17 +90,23 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
             {
                 if (yeniKonu.Text.Length < 50)
                 {
-                    string sorgu = "select topic from Topics where topic like '%" + yeniKonu.Text + "%'";
+                    string sorgu = "select konu_adi from konu where konu_adi like '%" + yeniKonu.Text + "%'";
                     DataSet al = degisken.genelvericekme(sorgu);
                     if (al.Tables[0].Rows.Count == 0)
                     {
-                        sorgu = "insert into Topics(topic) values('" + yeniKonu.Text.TrimEnd().TrimStart().ToString() + "')";
+                        //Konu ekleme
+                        sorgu = "insert into konu(konu_adi) values('" + yeniKonu.Text.TrimEnd().TrimStart().ToString() + "')";
                         degisken.genelinsert(sorgu);
-                        sorgu = "select tID from Topics where topic = '" + yeniKonu.Text.TrimEnd().TrimStart() + "'";
+
+                        //Eklenen konunun id'si
+                        sorgu = "select kno from konu where konu_adi = '" + yeniKonu.Text.TrimEnd().TrimStart() + "'";
                         al = degisken.genelvericekme(sorgu);
-                        sorgu = "INSERT INTO dbo.Questions ([pID],[tID],[qHeader],[question],[qDate])"
-                               + "VALUES(" + id.Name + "," + al.Tables[0].Rows[0][0].ToString() + ",'" + yeniKonu.Text + "','" + yeniKonu.Text + "','" + DateTime.Now.ToString("MM-dd-yyyy") + "')";
-                        degisken.genelinsert(sorgu);
+
+
+
+                        //sorgu = "INSERT INTO dbo.Questions ([pID],[tID],[qHeader],[question],[qDate])"
+                        //       + "VALUES(" + id.Name + "," + al.Tables[0].Rows[0][0].ToString() + ",'" + yeniKonu.Text + "','" + yeniKonu.Text + "','" + DateTime.Now.ToString("MM-dd-yyyy") + "')";
+                        //degisken.genelinsert(sorgu);
                         System.GC.SuppressFinalize(degisken);
                         Response.Redirect("statusReport.aspx?g=questionInsert");
                     }
