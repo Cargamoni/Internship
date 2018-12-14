@@ -4,9 +4,23 @@
 
 <html>
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <title>KTÜ - Staj Programı</title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <%--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" runat="server">--%>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/panel.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <%--<script src="/js/jquery/jquery-1.11.1.min.js"></script>--%>
+    <script src="/js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/js/jqueryui/jquery-ui.js"></script>
+    <script src="/js/wordcounter.js"></script>
+
+    <%-- Bu Alan Gereklidir Bölümü İçin --%>
+    <script src="/js/require.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script src="/js/jquery.maskedinput.min.js"></script>
 </head>
 <script>
 
@@ -199,10 +213,10 @@
                     <li>
                         <a href="#"><i class=" fa fa-briefcase"></i>Şirket Ekleme</a>
                     </li>
-                                        <li>
+                    <li>
                         <a href="#"><i class=" fa fa-graduation-cap"></i>Üniversite Ekleme</a>
                     </li>
-                                        <li>
+                    <li>
                         <a href="#"><i class=" fa fa-asterisk"></i>Departman Ekleme</a>
                     </li>
                 </ul>
@@ -219,7 +233,7 @@
                     <li><a href="#"><i class=" fa fa-sign-blank text-primary "></i>Üniversite Düzenleme </a></li>
                     <li><a href="#"><i class=" fa fa-sign-blank text-primary "></i>Departman Düzenleme </a></li>
                 </ul>
-<%--                <ul class="nav nav-pills nav-stacked labels-info ">
+                <%--                <ul class="nav nav-pills nav-stacked labels-info ">
                     <li>
                         <h4>Buddy online</h4>
                     </li>
@@ -241,14 +255,14 @@
                 </ul>--%>
                 <div class="inbox-body text-center">
                     <div class="btn-group">
-<%--                        <a class="btn btn-lg btn-primary" href="/panel/statusReport.aspx?g=logout">
+                        <%--                        <a class="btn btn-lg btn-primary" href="/panel/statusReport.aspx?g=logout">
                             <i class="fa fa-sign-out"></i>
                         </a>--%>
-                            <a class="btn btn-primary"  href="/panel/statusReport.aspx?g=logout">
-                                <i class="fa fa-sign-out"></i>
-                                Çıkış Yap</a>
+                        <a class="btn btn-primary" href="/panel/statusReport.aspx?g=logout">
+                            <i class="fa fa-sign-out"></i>
+                            Çıkış Yap</a>
                     </div>
-<%--                    <div class="btn-group">
+                    <%--                    <div class="btn-group">
                         <a class="btn mini btn-success" href="javascript:;">
                             <i class="fa fa-phone"></i>
                         </a>
@@ -262,9 +276,9 @@
 
             </aside>
             <aside class="lg-side">
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                        <%-- Buraya İçerik gelecek --%>
-                    </asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    <%-- Buraya İçerik gelecek --%>
+                </asp:ContentPlaceHolder>
             </aside>
         </div>
     </div>

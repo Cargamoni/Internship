@@ -36,7 +36,6 @@ public partial class panel_statusReport : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-
-        Response.Redirect("/Default.aspx");
+        Response.Redirect("yonetim.aspx");
     }
 }

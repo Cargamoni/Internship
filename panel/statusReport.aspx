@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="server">
         <div class="col-xs-12 col-sm-8 col-md-9" style="padding-top: 70px;">
         <div class="col-md-20">
             <p class="col-md-12">
@@ -11,7 +11,7 @@
             </p>
         </div>
         <div class="col-md-20" style="float: right">
-            <asp:Button class="btn btn-primary" ID="Button1" runat="server" OnClick="Button1_Click" Text="Siteyi Görüntüle" Width="189px" />
+            <%--<asp:Button class="btn btn-primary" ID="Button1" runat="server" OnClick="Button1_Click" Text="Siteyi Görüntüle" Width="189px" />--%>
         </div>
     </div>
 </asp:Content>
