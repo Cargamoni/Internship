@@ -24,5 +24,9 @@ public partial class panel_yonetim : System.Web.UI.Page
         //Ascx bir kontroldür. Üzerinde çeşitli kontroller tutabilir.
         user yeni = new user(args);
         this.ascxtipgonder(yeni.ascxtip);
+        if(args == "")
+        {
+            baslik.Text = "Ana Sayfa";
+        }
     }
 }

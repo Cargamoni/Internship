@@ -23,7 +23,10 @@ public class user
             switch (args)
             {
                 case "":
-                    ascxtip = "anasayfa.ascx";
+                    ascxtip = "main.ascx";
+                    break;
+                case "anasayfa":
+                    ascxtip = "main.ascx";
                     break;
             }
         }
