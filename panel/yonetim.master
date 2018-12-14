@@ -9,12 +9,13 @@
     </asp:ContentPlaceHolder>
 </head>
 <script>
+
     function checkBoxes(checkedOne, checkBox) {
         checkedOne.forEach(function (element) {
             var arrayElement = document.getElementById(element);
             //dvPassport.style.display = checkBox.checked ? "block" : "none";
             if (checkBox.checked) {
-                if (element == "DropDownList1")
+                if (element == "DropDownList1" || element == "DropDownList2")
                     arrayElement.style.display = "none";
                 else
                     arrayElement.style.display = "block";
@@ -22,7 +23,7 @@
 
             }
             else {
-                if (element == "DropDownList1")
+                if (element == "DropDownList1" || element == "DropDownList2")
                     arrayElement.style.display = "block";
                 else
                     arrayElement.style.display = "none";
@@ -104,7 +105,7 @@
                                         </div>
                                     </form>--%>
 
-                                    <form runat="server">
+                                    <form name="stajForm" id="stajForm" runat="server">
                                         <div class="form-group col-lg-12 control-label">
                                             <asp:TextBox ID="ogrenciNo" runat="server" CssClass="form-control input-lg"></asp:TextBox>
                                         </div>
@@ -117,7 +118,6 @@
                                             <asp:Label ID="sayici" runat="server"></asp:Label>
                                             <asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="False" CssClass="checkbox col-lg-10"
                                                 onclick="var args = ['yeniKonu', 'sayici', 'DropDownList1']; checkBoxes(args,this);"></asp:CheckBox>
-
                                         </div>
 
                                         <%-- İşyeri  --%>
@@ -127,30 +127,55 @@
                                             <asp:TextBox ID="yeniIsyeri" runat="server" CssClass="form-control input-lg countedfor50"></asp:TextBox>
                                             <asp:Label ID="sayici2" runat="server"></asp:Label>
                                             <asp:TextBox ID="yeniIsyeriAdres" runat="server" CssClass="form-control input-lg countedfor50"></asp:TextBox>
-                                            <asp:TextBox ID="yeniIsyeriKonum" runat="server" CssClass="form-control input-lg countedfor50"></asp:TextBox>
+                                            <asp:TextBox ID="yeniIsyeriIletisim" runat="server" CssClass="form-control input-lg countedfor50"></asp:TextBox>
                                             <asp:CheckBox ID="CheckBox2" runat="server" AutoPostBack="False" CssClass="checkbox col-lg-10"
-                                                onclick="var args = ['yeniIsyeri', 'sayici2', 'DropDownList2']; checkBoxes(args,this);"></asp:CheckBox>
+                                                onclick="var args = ['yeniIsyeri', 'sayici2', 'DropDownList2', 'yeniIsyeriAdres', 'yeniIsyeriIletisim']; checkBoxes(args,this);"></asp:CheckBox>
                                         </div>
 
                                         <%-- Başlangıç ve Bitiş --%>
-                                        <div class="form-group col-lg-12 control-label">
+                                        <div class="form-group col-lg-12">
+                                            <div class="input-group date" data-provide="datepicker">
+                                                <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                            </div>
                                         </div>
+                                        <div class="form-group col-lg-12">
+                                            <div class="input-group date" data-provide="datepicker2">
+                                                <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                            </div>
+                                        </div>
+
+                                        <script type="text/javascript">
+                                            $('.datepicker').datepicker();
+                                            $('.datepicker2').datepicker();
+                                        </script>
 
                                         <%-- Kabul Edilen --%>
                                         <div class="form-group col-lg-12 control-label">
+                                            <asp:TextBox ID="kabulEdilen" runat="server" CssClass="form-control input-lg"></asp:TextBox>
                                         </div>
 
                                         <%-- Değerlendirme --%>
                                         <div class="form-group col-lg-12 control-label">
+                                            <asp:TextBox ID="degerlendirme" runat="server" CssClass="form-control input-lg"></asp:TextBox>
                                         </div>
 
                                         <%-- Sınıf --%>
                                         <div class="form-group col-lg-12 control-label">
+                                            <asp:TextBox ID="sinif" runat="server" CssClass="form-control input-lg"></asp:TextBox>
                                         </div>
 
                                         <%-- Departman --%>
+                                        <div class="form-group col-lg-12 control-label">
+                                            <asp:Label ID="Label1" runat="server" Text="Bir Departman Seçiniz veya Ekleyiniz"></asp:Label>
+                                            <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control btn-block dropdown"></asp:DropDownList>
+                                            <asp:TextBox ID="yeniDepartman" runat="server" CssClass="form-control input-lg countedfor50"></asp:TextBox>
+                                            <asp:Label ID="sayici3" runat="server"></asp:Label>
+                                            <asp:CheckBox ID="CheckBox3" runat="server" AutoPostBack="False" CssClass="checkbox col-lg-10"
+                                                onclick="var args = ['yeniDepartman', 'sayici3', 'DropDownList3']; checkBoxes(args,this);"></asp:CheckBox>
+                                        </div>
 
-                                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Soruyu Gönder" type="submit" value="Soruyu Gönder" class="btn btn-lg btn-info btn-block" />
+                                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Stajı Ekle" type="submit" value="Stajı Ekle" class="btn btn-lg btn-info btn-block" />
+                                        <%--<button type="submit" runat="server" onclick="Button1_Click" id="Button1"  class="btn btn-lg btn-info btn-block">Staj Ekle</button>--%>
                                     </form>
                                 </div>
                             </div>
