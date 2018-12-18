@@ -26,32 +26,12 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
        
+    
+    <%-- Search Script --%>
+    <script src="../js/searcher.js"></script>
 
 
 </head>
-<script>
-
-    function checkBoxes(checkedOne, checkBox) {
-        checkedOne.forEach(function (element) {
-            var arrayElement = document.getElementById(element);
-            //dvPassport.style.display = checkBox.checked ? "block" : "none";
-            if (checkBox.checked) {
-                if (element == "DropDownList1" || element == "DropDownList2" || element == "DropDownList3")
-                    arrayElement.style.display = "none";
-                else
-                    arrayElement.style.display = "block";
-
-
-            }
-            else {
-                if (element == "DropDownList1" || element == "DropDownList2" || element == "DropDownList3")
-                    arrayElement.style.display = "block";
-                else
-                    arrayElement.style.display = "none";
-            }
-        });
-    }
-</script>
 <body>
     <div class="container">
         <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>

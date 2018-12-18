@@ -73,9 +73,9 @@ public partial class panel_main : System.Web.UI.UserControl
                                + " <td class=\"inbox-small-cells\"></td>"
                                + " <td class=\"inbox-small-cells\"></td>"
                                + " <td class=\"inbox-small-cells\"></td>"
-                               + " <td class=\"inbox-small-cells\"></td>"
-                               + " <td class=\"inbox-small-cells\"><a href=\"mulakat.aspx?sno=" + al.Tables[0].Rows[i][0] + "\"><input type=\"button\" class=\"btn btn-block btn-primary\" value=\"Mülakat Oluştur\"></a></td>"
-                               + " <td class=\"inbox-small-cells\"><a href=\"staj.aspx?sno=" + al.Tables[0].Rows[i][0] + "\"><input type=\"button\" class=\"btn btn-block btn-info\" value=\"Stajı Düzenle\"></a></td>"
+                               + " <td class=\"inbox-small-cells\"><a style=\"text-decoration: none;\" href=\"mulakat.aspx?sno=" + al.Tables[0].Rows[i][0] + "\"><input type=\"button\" class=\"btn btn-block btn-primary\" value=\"Mülakat Oluştur\"></a></td>"
+                               + " <td class=\"inbox-small-cells\"><a style=\"text-decoration: none;\" href=\"staj.aspx?sno=" + al.Tables[0].Rows[i][0] + "\"><input type=\"button\" class=\"btn btn-block btn-info\" value=\"Stajı Düzenle\"></a></td>"
+                               + " <td class=\"inbox-small-cells\"><a style=\"text-decoration: none;\" href=\"statusReport.aspx?g=stajSil&sno=" + al.Tables[0].Rows[i][0] + "\"><input type=\"button\" class=\"btn btn-block btn-danger\" value=\"Stajı Sil\"></a>"
                                + "</tr>";
             Literal1.Text += forLiteral;
         }

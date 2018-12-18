@@ -82,7 +82,6 @@
 })(jQuery);
 
 $(function () {
-    debugger;
     $(".counted").charCounter(1000, { container: "#counter" });
     $(".countedfor50").charCounter(50, { container: "#counter50" });
     $(".countedfor501").charCounter(50, { container: "#counter501" });

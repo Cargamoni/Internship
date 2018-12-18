@@ -54,6 +54,27 @@ public partial class panel_statusReport : System.Web.UI.Page
             Label1.Text = "Toplam Gün Girilmedi !";
             baslik.Text = "Toplam Gün Hatalı";
         }
+        else if(g == "stajSil")
+        {
+            gid = Request.QueryString["sno"];
+            systematik degisken = new systematik();
+            string sorgu = "select * from staj where sno = " + gid;
+            if (degisken.genelvericekme(sorgu).Tables[0].Rows.Count != 0)
+            {
+                sorgu = "delete from staj where sno = " + gid;
+                degisken.genelupdate(sorgu);
+                imageControl.Text = "<img alt=\"\" src=\"../images/okey.png\"/>";
+                Label1.Text = "Kayıdınız Başarılı Bir Şekilde Silinmiştir.";
+                baslik.Text = "Silme Başarılı";
+            }
+            else
+            {
+                imageControl.Text = "<img alt=\"\" src=\"../images/warning.png\"/>";
+                Label1.Text = "Silme işleminde hata oluştu!";
+                baslik.Text = "Silme Yapılamadı";
+            }
+            System.GC.SuppressFinalize(degisken);
+        }
         else if (g == "logout")
         {
             HttpCookie aCookie;
