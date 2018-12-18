@@ -151,13 +151,16 @@
 
                                         <%-- Başlangıç ve Bitiş --%>
                                         <div class="form-group col-lg-12">
+                                            <asp:Label ID="Label2" runat="server" Text="Staj Başlangıç Tarihi"></asp:Label>
                                             <div class="input-group date datepicker" data-provide="datepicker">
-                                                <input type="text" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input id="baslangicTarihi" type="text" class="form-control" runat="server"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             </div>
                                         </div>
+
                                         <div class="form-group col-lg-12">
+                                            <asp:Label ID="Label3" runat="server" Text="Staj Bitiş Tarihi"></asp:Label>
                                             <div class="input-group date datepicker2" data-provide="datepicker">
-                                                <input type="text" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input id="bitisTarihi" type="text" class="form-control" runat="server"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             </div>
                                         </div>
 
@@ -169,6 +172,11 @@
                                                 format: 'dd/mm/yyyy'
                                             });
                                         </script>
+
+                                        <%-- Toplam Gün --%>
+                                        <div class="form-group col-lg-12 control-label">
+                                            <asp:TextBox ID="toplam_gun" runat="server" CssClass="form-control input-lg"></asp:TextBox>
+                                        </div>
 
                                         <%-- Kabul Edilen --%>
                                         <div class="form-group col-lg-12 control-label">

@@ -70,6 +70,7 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
         }
 
         degerlendirme.Enabled = false;
+        kabulEdilen.Enabled = false;
 
         DropDownList1.Attributes.Add("style", "padding-top: 5px;");
         CheckBox1.Attributes.Add("class", "mail-checkbox");
@@ -84,9 +85,10 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
         yeniIsyeriIletisim.Attributes.Add("name", "yeniIsyeriIletisim");
 
         yeniDepartman.Attributes.Add("placeholder", "Yeni Departman Giriniz");
-        kabulEdilen.Attributes.Add("placeholder", "Kabul Edilen Günü Giriniz");
+        kabulEdilen.Attributes.Add("placeholder", "Değerlendirme Sonucu Oluşturulacak");
         degerlendirme.Attributes.Add("placeholder", "Mülakat Sonucu Güncellenecek Değerlendirme");
         sinif.Attributes.Add("placeholder", "Öğrencinin Sınıfını Giriniz");
+        toplam_gun.Attributes.Add("placeholder", "Toplam Günü Giriniz");
 
         //Konu Visible
         if (DropDownList1.Items.Count == 0)
@@ -146,12 +148,9 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
         FormsIdentity id = (FormsIdentity)HttpContext.Current.User.Identity;
         FormsAuthenticationTicket ticket = id.Ticket;
         int[] stajInsert = new int[3];
-
         //Konu Ekleme, Listeden Seçme
         if ( CheckBox1.Checked || DropDownList1.Items.Count == 0)
         {
-            //if (question.Text.Length != 0 && questionHeader.Text.Length != 0)
-            //{
             if (yeniKonu.Text.Length != 0)
             {
                 if (yeniKonu.Text.Length < 50)
@@ -170,10 +169,6 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
                         stajInsert[0] = System.Convert.ToInt32(al.Tables[0].Rows[0][0]);
 
 
-
-                        //sorgu = "INSERT INTO dbo.Questions ([pID],[tID],[qHeader],[question],[qDate])"
-                        //       + "VALUES(" + id.Name + "," + al.Tables[0].Rows[0][0].ToString() + ",'" + yeniKonu.Text + "','" + yeniKonu.Text + "','" + DateTime.Now.ToString("MM-dd-yyyy") + "')";
-                        //degisken.genelinsert(sorgu);
                         System.GC.SuppressFinalize(degisken);
                         //Response.Redirect("statusReport.aspx?g=questionInsert");
                     }
@@ -209,8 +204,6 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
         //İşyeri Ekleme, Listeden Seçme
         if (CheckBox2.Checked || DropDownList2.Items.Count == 0)
         {
-            //if (question.Text.Length != 0 && questionHeader.Text.Length != 0)
-            //{
             if (yeniIsyeriAdres.Text.Length != 0 && yeniIsyeriIletisim.Text.Length != 0 && yeniIsyeri.Text.Length != 0)
             {
                 if (yeniIsyeri.Text.Length < 50 && yeniIsyeriAdres.Text.Length < 200 && yeniIsyeriIletisim.Text.Length < 18)
@@ -228,10 +221,6 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
                         al = degisken.genelvericekme(sorgu);
                         stajInsert[1] = System.Convert.ToInt32(al.Tables[0].Rows[0][0]);
 
-
-                        //sorgu = "INSERT INTO dbo.Questions ([pID],[tID],[qHeader],[question],[qDate])"
-                        //       + "VALUES(" + id.Name + "," + al.Tables[0].Rows[0][0].ToString() + ",'" + yeniKonu.Text + "','" + yeniKonu.Text + "','" + DateTime.Now.ToString("MM-dd-yyyy") + "')";
-                        //degisken.genelinsert(sorgu);
                         System.GC.SuppressFinalize(degisken);
                         Response.Redirect("statusReport.aspx?g=questionInsert");
                     }
@@ -248,11 +237,6 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
                 Response.Redirect("statusReport.aspx?g=questionInsertFail");
             }
         }
-        //else
-        //{
-        //    System.GC.SuppressFinalize(degisken);
-        //    Response.Redirect("statusReport.aspx?g=questionInsertFail");
-        //}
         else
         {
             int companyID = Convert.ToInt32(DropDownList2.SelectedItem.Value);
@@ -284,13 +268,8 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
                         //Eklenen konunun id'si
                         sorgu = "select did from departman where departman = '" + yeniDepartman.Text.TrimEnd().TrimStart() + "'";
                         al = degisken.genelvericekme(sorgu);
-                        stajInsert[0] = System.Convert.ToInt32(al.Tables[0].Rows[0][0]);
+                        stajInsert[2] = System.Convert.ToInt32(al.Tables[0].Rows[0][0]);
 
-
-
-                        //sorgu = "INSERT INTO dbo.Questions ([pID],[tID],[qHeader],[question],[qDate])"
-                        //       + "VALUES(" + id.Name + "," + al.Tables[0].Rows[0][0].ToString() + ",'" + yeniKonu.Text + "','" + yeniKonu.Text + "','" + DateTime.Now.ToString("MM-dd-yyyy") + "')";
-                        //degisken.genelinsert(sorgu);
                         System.GC.SuppressFinalize(degisken);
                         //Response.Redirect("statusReport.aspx?g=questionInsert");
                     }
@@ -307,20 +286,67 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
                 Response.Redirect("statusReport.aspx?g=questionInsertFail");
             }
         }
-        //else
-        //{
-        //    System.GC.SuppressFinalize(degisken);
-        //    Response.Redirect("statusReport.aspx?g=questionInsertFail");
-        //}
         else
         {
-            int topicID = Convert.ToInt32(DropDownList1.SelectedItem.Value);
+            int departmanID = Convert.ToInt32(DropDownList1.SelectedItem.Value);
             //string sorgu = "select kno from konu where konu_adi = '" + DropDownList1.SelectedItem.Text.TrimEnd().TrimStart().ToString() + "'";
             //DataSet al = degisken.genelvericekme(sorgu);
             //stajInsert[0] = System.Convert.ToInt32(al.Tables[0].Rows[0][0]);
-            stajInsert[0] = topicID;
+            stajInsert[2] = departmanID;
             //degisken.genelinsert(sorgu);
             System.GC.SuppressFinalize(degisken);
+        }
+
+        if(stajInsert[0].ToString() != null && stajInsert[1].ToString() != null && stajInsert[2].ToString() != null )
+        {
+            if(ogrenciNo.Text != null)
+            {
+                string sorgu = "select ono from dbo.ogrenci where ono = " + ogrenciNo.Text;
+                DataSet al = degisken.genelvericekme(sorgu);
+                if(al.Tables[0].Rows.Count != 0)
+                {
+                    if(baslangicTarihi.Value != null && bitisTarihi.Value != null)
+                    {
+                        if (toplam_gun.Text != null)
+                        {
+                            if (sinif.Text != null)
+                            {
+                                //insert into staj(ono, kno, ino, departman, baslama, bitis, toplam_gun, sinif) values(357405, 1, 1, 1, convert(datetime,'24/12/2018',103), convert(datetime,'27/12/2018',103), 40, 4)
+                                sorgu = "insert into staj(ono, kno, ino, departman, baslama, bitis, toplam_gun, sinif) " +
+                                    "values(" + ogrenciNo.Text + ", " + stajInsert[0].ToString() + ", " + stajInsert[1].ToString() + ", " + stajInsert[2].ToString() +
+                                    ",  convert(datetime,'" + baslangicTarihi.Value + "',103),  convert(datetime,'" + bitisTarihi.Value +"',103), "+ toplam_gun.Text +", "+ sinif.Text +")";
+                                degisken.genelinsert(sorgu);
+                                System.GC.SuppressFinalize(degisken);
+                                Response.Redirect("statusReport.aspx?g=stajInsert");
+                            }
+                            else
+                            {
+                                Response.Redirect("statusReport.aspx?g=sinifFail");
+                            }
+                        }
+                        else
+                        {
+                            Response.Redirect("statusReport.aspx?g=toplamGunFail");
+                        }
+                    }
+                    else
+                    {
+                        Response.Redirect("statusReport.aspx?g=baslangic-bitis-fail");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("statusReport.aspx?g=ogrenciYok");
+                }
+            }
+            else
+            {
+                Response.Redirect("statusReport.aspx?g=ogrenciBos");
+            }
+        }
+        else
+        {
+            Response.Redirect("statusReport.aspx?g=konu-departman-isyeri-fail");
         }
     }
 }
