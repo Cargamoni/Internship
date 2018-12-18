@@ -49,34 +49,36 @@ public partial class panel_main : System.Web.UI.UserControl
         degisken = new systematik();
         FormsIdentity id = (FormsIdentity)HttpContext.Current.User.Identity;
         FormsAuthenticationTicket ticket = id.Ticket;
-        string sorgu = "select staj.sno, staj.ono, CAST(dbo.ogrenciAdiDondur(staj.ono) as varchar(50)) as ogrenciAdi, CAST(dbo.cokluDondur(staj.ino, 'sirket') as varchar(50)) as sirketAdi , staj.baslama, staj.bitis, CAST(dbo.cokluDondur(staj.departman,'departman') as varchar(50)) as departmanAdi, degerlendirme from dbo.staj";
+        string sorgu = "select staj.sno, staj.ono, CAST(dbo.ogrenciAdiDondur(staj.ono) as varchar(50)) as ogrenciAdi, CAST(dbo.cokluDondur(staj.ino, 'sirket') as varchar(50)) as sirketAdi , staj.baslama, staj.bitis, CAST(dbo.cokluDondur(staj.did,'departman') as varchar(50)) as departmanAdi, degerlendirme from dbo.staj";
         al = degisken.genelvericekme(sorgu);
-        string degerlendirme = al.Tables[0].Rows[0][7].ToString() == "" ? "unread" : "";
-        DateTime baslama = (DateTime)al.Tables[0].Rows[0][4];
-        DateTime bitis = (DateTime)al.Tables[0].Rows[0][5];
-        string forLiteral = "<tr class=\"" + degerlendirme + " searchThese\">"
-                           + "    <td class=\"inbox-small-cells\">"
-                           //+ "         <input type = \"checkbox\" class=\"mail-checkbox\">"
-                           + "          <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#" + al.Tables[0].Rows[0][0] + "\" class=\"mail-checkbox\" ><i class=\"fa fa-plus fa fa-white\"></i></a>"
-                           + "     </td>"
-                           + "     <td class=\"inbox-small-cells\"><i class=\"fa fa-star\" > " + al.Tables[0].Rows[0][1] + "</i></td>"
-                           + "     <td class=\"view-message  dont-show\" >" + al.Tables[0].Rows[0][2] + "</td>"
-                           + "     <td class=\"view-message \" > " + al.Tables[0].Rows[0][3] + " </td>"
-                           + "     <td class=\"view-message  inbox-small-cells\" > " + al.Tables[0].Rows[0][6] + " </td>"
-                           + "     <td class=\"view-message  text-right\" > " + baslama.ToShortDateString() + " - " + bitis.ToShortDateString() + "</td>"
-                           + " </tr> "
+        string forLiteral = "";
+        for (int i = 0; i <= al.Tables[0].Rows.Count - 1; i++)
+        {
+            string degerlendirme = al.Tables[0].Rows[i][7].ToString() == "" ? "unread" : "";
+            DateTime baslama = (DateTime)al.Tables[0].Rows[i][4];
+            DateTime bitis = (DateTime)al.Tables[0].Rows[i][5];
+            forLiteral = "<tr class=\"" + degerlendirme + " searchThese\">"
+                               + "    <td class=\"inbox-small-cells\">"
+                               //+ "         <input type = \"checkbox\" class=\"mail-checkbox\">"
+                               + "          <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#" + al.Tables[0].Rows[i][0] + "\" class=\"mail-checkbox\" ><i class=\"fa fa-plus fa fa-white\"></i></a>"
+                               + "     </td>"
+                               + "     <td class=\"inbox-small-cells\"><i class=\"fa fa-star\" > " + al.Tables[0].Rows[i][1] + "</i></td>"
+                               + "     <td class=\"view-message  dont-show\" >" + al.Tables[0].Rows[i][2] + "</td>"
+                               + "     <td class=\"view-message \" > " + al.Tables[0].Rows[i][3] + " </td>"
+                               + "     <td class=\"view-message  inbox-small-cells\" > " + al.Tables[0].Rows[i][6] + " </td>"
+                               + "     <td class=\"view-message  text-right\" > " + baslama.ToShortDateString() + " - " + bitis.ToShortDateString() + "</td>"
+                               + " </tr> "
 
-                           + "<tr class=\"collapse\" id=\"" + al.Tables[0].Rows[0][0] + "\">"
-                           + " <td class=\"inbox-small-cells\"></td>"
-                                                      + " <td class=\"inbox-small-cells\"></td>"
-                                                                                 + " <td class=\"inbox-small-cells\"></td>"
-                                                                                                            + " <td class=\"inbox-small-cells\"></td>"
-                           + " <td class=\"inbox-small-cells\"><a href=\"mulakat.aspx?sno="+ al.Tables[0].Rows[0][0] +"\"><input type=\"button\" class=\"btn btn-block btn-primary\" value=\"Mülakat Oluştur\"></a></td>"
-                           + " <td class=\"inbox-small-cells\"><a href=\"staj.aspx?sno=" + al.Tables[0].Rows[0][0] + "\"><input type=\"button\" class=\"btn btn-block btn-info\" value=\"Stajı Düzenle\"></a></td>"
-                           + "</tr>";
-         
-
-        Literal1.Text = forLiteral;
+                               + "<tr class=\"collapse\" id=\"" + al.Tables[0].Rows[i][0] + "\">"
+                               + " <td class=\"inbox-small-cells\"></td>"
+                               + " <td class=\"inbox-small-cells\"></td>"
+                               + " <td class=\"inbox-small-cells\"></td>"
+                               + " <td class=\"inbox-small-cells\"></td>"
+                               + " <td class=\"inbox-small-cells\"><a href=\"mulakat.aspx?sno=" + al.Tables[0].Rows[i][0] + "\"><input type=\"button\" class=\"btn btn-block btn-primary\" value=\"Mülakat Oluştur\"></a></td>"
+                               + " <td class=\"inbox-small-cells\"><a href=\"staj.aspx?sno=" + al.Tables[0].Rows[i][0] + "\"><input type=\"button\" class=\"btn btn-block btn-info\" value=\"Stajı Düzenle\"></a></td>"
+                               + "</tr>";
+            Literal1.Text += forLiteral;
+        }
         al.Dispose();
     }
 }

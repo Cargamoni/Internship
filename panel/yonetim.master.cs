@@ -222,19 +222,19 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
                         stajInsert[1] = System.Convert.ToInt32(al.Tables[0].Rows[0][0]);
 
                         System.GC.SuppressFinalize(degisken);
-                        Response.Redirect("statusReport.aspx?g=questionInsert");
+                        //Response.Redirect("statusReport.aspx?g=questionInsert");
                     }
                 }
                 else
                 {
                     System.GC.SuppressFinalize(degisken);
-                    Response.Redirect("statusReport.aspx?g=longTopic");
+                    //Response.Redirect("statusReport.aspx?g=longTopic");
                 }
             }
             else
             {
                 System.GC.SuppressFinalize(degisken);
-                Response.Redirect("statusReport.aspx?g=questionInsertFail");
+                //.Redirect("statusReport.aspx?g=questionInsertFail");
             }
         }
         else
@@ -257,7 +257,7 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
             {
                 if (yeniDepartman.Text.Length < 50)
                 {
-                    string sorgu = "select departman from departman where departman like '%" + yeniDepartman.Text + "%'";
+                    string sorgu = "select departman from dbo.departman where departman like '%" + yeniDepartman.Text + "%'";
                     DataSet al = degisken.genelvericekme(sorgu);
                     if (al.Tables[0].Rows.Count == 0)
                     {
@@ -266,13 +266,14 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
                         degisken.genelinsert(sorgu);
 
                         //Eklenen konunun id'si
-                        sorgu = "select did from departman where departman = '" + yeniDepartman.Text.TrimEnd().TrimStart() + "'";
+                        sorgu = "select departman.did from dbo.departman where departman.departman = '" + yeniDepartman.Text.TrimEnd().TrimStart() + "'";
                         al = degisken.genelvericekme(sorgu);
                         stajInsert[2] = System.Convert.ToInt32(al.Tables[0].Rows[0][0]);
 
                         System.GC.SuppressFinalize(degisken);
                         //Response.Redirect("statusReport.aspx?g=questionInsert");
                     }
+                    stajInsert[2] = Convert.ToInt32(al.Tables[0].Rows[0][0]);
                 }
                 else
                 {
@@ -288,7 +289,7 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
         }
         else
         {
-            int departmanID = Convert.ToInt32(DropDownList1.SelectedItem.Value);
+            int departmanID = Convert.ToInt32(DropDownList3.SelectedItem.Value);
             //string sorgu = "select kno from konu where konu_adi = '" + DropDownList1.SelectedItem.Text.TrimEnd().TrimStart().ToString() + "'";
             //DataSet al = degisken.genelvericekme(sorgu);
             //stajInsert[0] = System.Convert.ToInt32(al.Tables[0].Rows[0][0]);
@@ -312,7 +313,7 @@ public partial class panel_yonetim : System.Web.UI.MasterPage
                             if (sinif.Text != null)
                             {
                                 //insert into staj(ono, kno, ino, departman, baslama, bitis, toplam_gun, sinif) values(357405, 1, 1, 1, convert(datetime,'24/12/2018',103), convert(datetime,'27/12/2018',103), 40, 4)
-                                sorgu = "insert into staj(ono, kno, ino, departman, baslama, bitis, toplam_gun, sinif) " +
+                                sorgu = "insert into staj(ono, kno, ino, did, baslama, bitis, toplam_gun, sinif) " +
                                     "values(" + ogrenciNo.Text + ", " + stajInsert[0].ToString() + ", " + stajInsert[1].ToString() + ", " + stajInsert[2].ToString() +
                                     ",  convert(datetime,'" + baslangicTarihi.Value + "',103),  convert(datetime,'" + bitisTarihi.Value +"',103), "+ toplam_gun.Text +", "+ sinif.Text +")";
                                 degisken.genelinsert(sorgu);
