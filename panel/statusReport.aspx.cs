@@ -12,7 +12,7 @@ public partial class panel_statusReport : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         g = Request.QueryString["g"];
-        if (g == "register" || g == "stajInsert")
+        if (g == "register" || g == "stajInsert" || g == "mulakatInsert" || g == "kurulInsert" || g == "ogrenciInsert" || g == "universiteInsert" || g == "departmanInsert" || g == "konuInsert" || g == "sirketInsert")
         {
             imageControl.Text = "<img alt=\"\" src=\"../images/okey.png\"/>";
             Label1.Text = "Kayıdınız Başarılı Bir Şekilde Tamamlanmıştır.";
@@ -23,6 +23,18 @@ public partial class panel_statusReport : System.Web.UI.Page
             imageControl.Text = "<img alt=\"\" src=\"../images/warning.png\"/>";
             Label1.Text = "Hatalı Sınıf Girişi.";
             baslik.Text = "Sınıf Hatalı";
+        }
+        else if (g == "sinifFail2")
+        {
+            imageControl.Text = "<img alt=\"\" src=\"../images/warning.png\"/>";
+            Label1.Text = "2. Sınıf 25 Günden Fazla Staj Yapamaz.";
+            baslik.Text = "Gün Fazla";
+        }
+        else if (g == "sinifGunFail")
+        {
+            imageControl.Text = "<img alt=\"\" src=\"../images/warning.png\"/>";
+            Label1.Text = "15 Günden Az 40 Günden Fazla Staj Yapamaz.";
+            baslik.Text = "Gün Fazla";
         }
         else if (g == "baslangic-bitis-fail")
         {
@@ -54,7 +66,13 @@ public partial class panel_statusReport : System.Web.UI.Page
             Label1.Text = "Toplam Gün Girilmedi !";
             baslik.Text = "Toplam Gün Hatalı";
         }
-        else if(g == "stajSil")
+        //else if (g == "60gun")
+        //{
+        //    imageControl.Text = "<img alt=\"\" src=\"../images/warning.png\"/>";
+        //    Label1.Text = "Staj Süresi 60 Günden Fazla Olamaz !";
+        //    baslik.Text = "Toplam Gün Hatalı";
+        //}
+        else if (g == "stajSil")
         {
             gid = Request.QueryString["sno"];
             systematik degisken = new systematik();
@@ -75,6 +93,49 @@ public partial class panel_statusReport : System.Web.UI.Page
             }
             System.GC.SuppressFinalize(degisken);
         }
+        else if (g == "ogrenciSil")
+        {
+            gid = Request.QueryString["ono"];
+            systematik degisken = new systematik();
+            string sorgu = "select * from ogrenci where ono = " + gid;
+            if (degisken.genelvericekme(sorgu).Tables[0].Rows.Count != 0)
+            {
+                sorgu = "delete from ogrenci where ono = " + gid;
+                degisken.genelupdate(sorgu);
+                imageControl.Text = "<img alt=\"\" src=\"../images/okey.png\"/>";
+                Label1.Text = "Kayıdınız Başarılı Bir Şekilde Silinmiştir.";
+                baslik.Text = "Silme Başarılı";
+            }
+            else
+            {
+                imageControl.Text = "<img alt=\"\" src=\"../images/warning.png\"/>";
+                Label1.Text = "Silme işleminde hata oluştu!";
+                baslik.Text = "Silme Yapılamadı";
+            }
+            System.GC.SuppressFinalize(degisken);
+        }
+        else if (g == "uyeSil")
+        {
+            gid = Request.QueryString["uno"];
+            systematik degisken = new systematik();
+            string sorgu = "select * from kurul where uno = " + gid;
+            if (degisken.genelvericekme(sorgu).Tables[0].Rows.Count != 0)
+            {
+                sorgu = "delete from kurul where uno = " + gid;
+                degisken.genelupdate(sorgu);
+                imageControl.Text = "<img alt=\"\" src=\"../images/okey.png\"/>";
+                Label1.Text = "Kayıdınız Başarılı Bir Şekilde Silinmiştir.";
+                baslik.Text = "Silme Başarılı";
+            }
+            else
+            {
+                imageControl.Text = "<img alt=\"\" src=\"../images/warning.png\"/>";
+                Label1.Text = "Silme işleminde hata oluştu!";
+                baslik.Text = "Silme Yapılamadı";
+            }
+            System.GC.SuppressFinalize(degisken);
+        }
+
         else if (g == "logout")
         {
             HttpCookie aCookie;

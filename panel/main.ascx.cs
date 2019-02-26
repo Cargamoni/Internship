@@ -372,6 +372,27 @@ public partial class panel_main : System.Web.UI.UserControl
                         {
                             if (sinif.Text != null)
                             {
+                                bool isArge = false;
+                                if (stajInsert[2] == 4)
+                                    isArge = true;
+                                int sinifInt = Convert.ToInt32(sinif.Text);
+                                int stajGun = Convert.ToInt32(toplam_gun.Text);
+                                if (stajGun < 15)
+                                {
+                                    Response.Redirect("statusReport.aspx?g=sinifGunFail");
+                                }
+                                else if (stajGun > 40 && isArge == false)
+                                {
+                                    Response.Redirect("statusReport.aspx?g=sinifGunFail");
+                                }
+                                else if (sinifInt <= 2 && stajGun >= 25)
+                                {
+                                    Response.Redirect("statusReport.aspx?g=sinifFail2");
+                                }
+                                //else if (stajGun > 60)
+                                //{
+                                //    Response.Redirect("statusReport.aspx?g=60gun");
+                                //}
                                 //insert into staj(ono, kno, ino, departman, baslama, bitis, toplam_gun, sinif) values(357405, 1, 1, 1, convert(datetime,'24/12/2018',103), convert(datetime,'27/12/2018',103), 40, 4)
                                 sorgu = "insert into staj(ono, kno, ino, did, baslama, bitis, toplam_gun, sinif) " +
                                     "values(" + ogrenciNo.Text + ", " + stajInsert[0].ToString() + ", " + stajInsert[1].ToString() + ", " + stajInsert[2].ToString() +

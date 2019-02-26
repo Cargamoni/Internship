@@ -10,7 +10,9 @@ public partial class panel_mulakat : System.Web.UI.Page
     string gelen;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(Request.QueryString["mulSil"] != null)
+        baslik.Text = "Mülakat İşlemleri";
+
+        if (Request.QueryString["mulSil"] != null)
         {
 
         }
@@ -18,8 +20,21 @@ public partial class panel_mulakat : System.Web.UI.Page
         {
             systematik degisken = new systematik();
             gelen = Request.QueryString["sno"];
-            string sorgu = "insert into mulakat(sno,tarih) values(" + gelen + ",";
-            
         }
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        systematik degisken = new systematik();
+        DateTime mulTarih = Convert.ToDateTime(baslangicTarihi.Value);
+        string baslangicSaat = "", baslangicDakika = "";
+        baslangicSaat += baslangicSaati.Value.ToString()[0];
+        baslangicSaat += baslangicSaati.Value.ToString()[1];
+        baslangicDakika += baslangicSaati.Value.ToString()[3];
+        baslangicDakika += baslangicSaati.Value.ToString()[4];
+        mulTarih.AddHours(Convert.ToDouble(baslangicSaat));
+        mulTarih.AddMinutes(Convert.ToDouble(baslangicDakika));
+        string sorgu = "insert into mulakat(sno,tarihi) values(" + gelen + ",convert(datetime,'" + mulTarih.ToShortDateString() + "',103))";
+        degisken.genelinsert(sorgu);
+        Response.Redirect("statusReport.aspx?g=mulakatInsert");
     }
 }

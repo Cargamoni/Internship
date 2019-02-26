@@ -28,6 +28,12 @@ public class user
                 case "anasayfa":
                     ascxtip = "main.ascx";
                     break;
+                case "ogrenciler":
+                    ascxtip = "ogrenciler.ascx";
+                        break;
+                case "kurul":
+                    ascxtip = "uyeler.ascx";
+                    break;
             }
         }
     }

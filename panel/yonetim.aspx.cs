@@ -28,5 +28,14 @@ public partial class panel_yonetim : System.Web.UI.Page
         {
             baslik.Text = "Ana Sayfa";
         }
+        else if(args == "ogrenciler")
+        {
+            baslik.Text = "Öğrenci İşlemleri";
+        }
+        else if(args == "kurul")
+        {
+            baslik.Text = "Kurul Üye İşlemleri";
+        }
+
     }
 }

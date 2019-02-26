@@ -60,30 +60,30 @@
                         <a href="#"><i class="fa fa-envelope"></i>Mülakat</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bookmark"></i>Öğrenci Ekleme</a>
+                        <a href="ogrenciEkle.aspx"><i class="fa fa-bookmark"></i>Öğrenci Ekleme</a>
                     </li>
                     <li>
-                        <a href="#"><i class=" fa fa-external-link"></i>Konu Ekleme <span class="label label-info pull-right">30</span></a>
+                        <a href="konuEkle.aspx"><i class=" fa fa-external-link"></i>Konu Ekleme</a>
                     </li>
                     <li>
-                        <a href="#"><i class=" fa fa-briefcase"></i>Şirket Ekleme</a>
+                        <a href="sirketEkle.aspx"><i class=" fa fa-briefcase"></i>Şirket Ekleme</a>
                     </li>
                     <li>
-                        <a href="#"><i class=" fa fa-graduation-cap"></i>Üniversite Ekleme</a>
+                        <a href="universiteEkle.aspx"><i class=" fa fa-graduation-cap"></i>Üniversite Ekleme</a>
                     </li>
                     <li>
-                        <a href="#"><i class=" fa fa-asterisk"></i>Departman Ekleme</a>
+                        <a href="departmanEkle.aspx"><i class=" fa fa-asterisk"></i>Departman Ekleme</a>
                     </li>
                 </ul>
                 <ul class="nav nav-pills nav-stacked labels-info inbox-divider">
                     <li>
                         <h4>Kurul İşlemleri</h4>
                     </li>
-                    <li><a href="#"><i class=" fa fa-sign-blank text-danger"></i>Üye Ekle </a></li>
+                    <li><a href="kurulUyeEkle.aspx"><i class=" fa fa-sign-blank text-danger"></i>Üye Ekle </a></li>
                     <li><a href="#"><i class=" fa fa-sign-blank text-danger"></i>Staj Düzenle</a></li>
                     <li><a href="#"><i class=" fa fa-sign-blank text-danger"></i>Mülakat Düzenle</a></li>
-                    <li><a href="#"><i class=" fa fa-sign-blank text-success"></i>Üye Düzenleme </a></li>
-                    <li><a href="#"><i class=" fa fa-sign-blank text-info "></i>Öğrenci İşlemleri </a></li>
+                    <li><a href="yonetim.aspx?user=kurul"><i class=" fa fa-sign-blank text-success"></i>Üye Düzenleme </a></li>
+                    <li><a href="yonetim.aspx?user=ogrenciler"><i class=" fa fa-sign-blank text-info "></i>Öğrenci İşlemleri </a></li>
                     <li><a href="#"><i class=" fa fa-sign-blank text-warning "></i>Şirket Düzenleme </a></li>
                     <li><a href="#"><i class=" fa fa-sign-blank text-primary "></i>Üniversite Düzenleme </a></li>
                     <li><a href="#"><i class=" fa fa-sign-blank text-primary "></i>Departman Düzenleme </a></li>
